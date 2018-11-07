@@ -1,30 +1,19 @@
 const app = new Vue({
     el :"#app",
     data :{
-        JIU :{
-            first: "JIU",
-            last : "Hong",
-            age : 7            
-        },
-        SOU :{
-            first: "SOU",
-            last : "Hong",
-            age : 4
-        }
+        friends : [
+            {
+                first: "JIU",
+                last : "Hong",
+                age : 7            
+            },
+            {
+                first: "SOU",
+                last : "Hong",
+                age : 4
+            }
+        ]
     },
-    /*
-    computed :{
-        JIUFullName(){
-            return `${this.JIU.first} ${this.JIU.last}`
-        },
-        SOUFullName(){
-            return `${this.SOU.first} ${this.SOU.last}`
-        },
-        SOUAgeInOneYear(){
-            return this.SOU.age +1;
-        }     
-    },
-    */
     filters:{
         fullName(value){
             return `${value.last} ${value.first}`
@@ -33,12 +22,24 @@ const app = new Vue({
             return age +1;
         }
     },
+    methods :{
+        decremenAge(friend){
+            friend.age = friend.age + 1;
+        },        
+        incremenAge(friend){
+            friend.age = friend.age + 1;
+        },
+    },
     template : `
     <div>
-    <h1>Hi Name {{JIU | fullName}}</h1>
-    <h2>Age : {{JIU.age | ageInOneYear}} </h2>
-    <h1>Hi Name {{SOU | fullName}}</h1>
-    <h2>Age : {{SOU.age | ageInOneYear}} </h2>    
+    <h2 v-for="friend in friends">
+        <h4>{{friend | fullName}}</h4>
+        <h5>age : {{friend.age}}</h5>
+        <button v-on:click="incremenAge(friend)"> + </button>
+        <button v-on:click="decremenAge(friend)"> - </button>
+        <input v-model="friend.first" />
+        <input v-model="friend.last" />
+    </h2>
     </div>
     `
 })
