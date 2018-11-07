@@ -1,21 +1,44 @@
 const app = new Vue({
     el :"#app",
     data :{
-        bobby :{
-            name: "bobby",
-            age : 25
+        JIU :{
+            first: "JIU",
+            last : "Hong",
+            age : 7            
         },
-        jon :{
-            name: "jon",
-            age : 35            
+        SOU :{
+            first: "SOU",
+            last : "Hong",
+            age : 4
+        }
+    },
+    /*
+    computed :{
+        JIUFullName(){
+            return `${this.JIU.first} ${this.JIU.last}`
+        },
+        SOUFullName(){
+            return `${this.SOU.first} ${this.SOU.last}`
+        },
+        SOUAgeInOneYear(){
+            return this.SOU.age +1;
+        }     
+    },
+    */
+    filters:{
+        fullName(value){
+            return `${value.last} ${value.first}`
+        },
+        ageInOneYear(age){
+            return age +1;
         }
     },
     template : `
     <div>
-    <h1>Hi Name {{bobby.name}}</h1>
-    <h2>Age : {{bobby.age}} </h2>
-    <h1>Hi Name {{jon.name}}</h1>
-    <h2>Age : {{jon.age}} </h2>    
+    <h1>Hi Name {{JIU | fullName}}</h1>
+    <h2>Age : {{JIU.age | ageInOneYear}} </h2>
+    <h1>Hi Name {{SOU | fullName}}</h1>
+    <h2>Age : {{SOU.age | ageInOneYear}} </h2>    
     </div>
     `
 })
